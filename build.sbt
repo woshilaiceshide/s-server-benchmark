@@ -56,6 +56,15 @@ libraryDependencies += "com.typesafe.akka" %% "akka-http-xml-experimental" % "2.
 libraryDependencies += "com.typesafe.akka" %% "akka-persistence-query-experimental" % "2.4.5"
 libraryDependencies += "com.typesafe.akka" %% "akka-typed-experimental" % "2.4.5"
 
+libraryDependencies += "org.rapidoid" % "rapidoid-http-fast" % "5.1.1"
+libraryDependencies += "org.rapidoid" % "rapidoid-http-server" % "5.1.1"
+
+libraryDependencies += "org.nanohttpd" % "nanohttpd" % "2.3.0"
+
+libraryDependencies += "io.undertow" % "undertow-core" % "1.3.22.Final"
+
+libraryDependencies += "org.eclipse.jetty" % "jetty-server" % "9.3.8.v20160314"
+
 libraryDependencies ++= {
   val sprayV = "1.3.3"
   Seq(
@@ -69,3 +78,9 @@ libraryDependencies ++= {
     "io.spray"            %%   "spray-util"    % sprayV
   )
 }
+
+javaOptions in Universal += "-J-Xmx32m"
+javaOptions in Universal += "-J-Xms32m"
+javaOptions in Universal += "-Dproperty1=value1"
+javaOptions in Universal += "-property2=value2"
+javaOptions in Universal += s"-version=${version.value}"
