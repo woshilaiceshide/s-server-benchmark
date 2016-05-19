@@ -79,8 +79,12 @@ libraryDependencies ++= {
   )
 }
 
+libraryDependencies += "commons-cli" % "commons-cli" % "1.3.1"
+
 javaOptions in Universal += "-J-Xmx32m"
 javaOptions in Universal += "-J-Xms32m"
 javaOptions in Universal += "-Dproperty1=value1"
 javaOptions in Universal += "-property2=value2"
 javaOptions in Universal += s"-version=${version.value}"
+
+mainClass in Compile := Some("woshilaiceshide.sserver.benchmark.Gate")

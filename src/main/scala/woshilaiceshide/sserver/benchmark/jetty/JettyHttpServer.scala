@@ -42,7 +42,7 @@ class PlainTextHandler extends AbstractHandler {
 
 }
 
-object JettyHttpServer extends App {
+object JettyHttpServer extends App with woshilaiceshide.sserver.benchmark.ServerProperty {
 
   // Insufficient threads: max=2 < needed(acceptors=1 + selectors=2 + request=1)
   val threadPool = new org.eclipse.jetty.util.thread.QueuedThreadPool(4, 2);
@@ -50,8 +50,8 @@ object JettyHttpServer extends App {
   val server = new Server(threadPool)
 
   val connector = new ServerConnector(server);
-  connector.setHost("0.0.0.0");
-  connector.setPort(8080);
+  connector.setHost(interface);
+  connector.setPort(port);
   server.setConnectors(Array[Connector](connector));
 
   val config = connector.getBean(classOf[HttpConnectionFactory]).getHttpConfiguration();

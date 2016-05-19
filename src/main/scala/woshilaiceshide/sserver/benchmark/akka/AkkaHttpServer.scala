@@ -9,7 +9,7 @@ import akka.actor._
 
 import scala.concurrent._
 
-object AkkaHttpServer extends App {
+object AkkaHttpServer extends App with woshilaiceshide.sserver.benchmark.ServerProperty {
 
   import com.typesafe.config._
   val s = """
@@ -54,7 +54,7 @@ spray.can.server {
   implicit val system = ActorSystem("http-server", config)
   implicit val materializer = ActorMaterializer()
 
-  val serverSource = Http().bind(interface = "localhost", port = 8080)
+  val serverSource = Http().bind(interface = interface, port = port)
 
   val requestHandler: HttpRequest => HttpResponse = {
     case HttpRequest(GET, Uri.Path("/"), _, _, _) =>

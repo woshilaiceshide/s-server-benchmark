@@ -12,7 +12,7 @@ import io.netty.example.http.helloworld.HttpHelloWorldServerHandler
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.channel.socket.nio.NioServerSocketChannel
 
-object NettyHttpServer extends App {
+object NettyHttpServer extends App with woshilaiceshide.sserver.benchmark.ServerProperty {
 
   class HttpHelloWorldServerInitializer extends ChannelInitializer[SocketChannel] {
 
@@ -26,14 +26,15 @@ object NettyHttpServer extends App {
   val bossGroup: EventLoopGroup = new NioEventLoopGroup(1);
   val workerGroup: EventLoopGroup = new NioEventLoopGroup(2);
   try {
-    
+
     val b = new ServerBootstrap();
     b.option[java.lang.Integer](ChannelOption.SO_BACKLOG, 1024);
     b.group(bossGroup, workerGroup).channel(classOf[NioServerSocketChannel]).childHandler(new HttpHelloWorldServerInitializer());
 
-    val ch: Channel = b.bind(8383).sync().channel();
+    val ch: Channel = b.bind(interface, port).sync().channel();
 
-    System.err.println("Open your web browser and navigate to http://127.0.0.1:8383/");
+    //??? just check for ipv4
+    System.err.println(s"Open your web browser and navigate to http://${if ("0.0.0.0" == interface) "127.0.0.1" else interface}:${port}/");
 
     ch.closeFuture().sync();
   } finally {

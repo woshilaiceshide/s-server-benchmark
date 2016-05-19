@@ -2,7 +2,7 @@ package woshilaiceshide.sserver.benchmark.undertow
 
 import io.undertow.server._
 
-object UndertowHttpServer extends App {
+object UndertowHttpServer extends App with woshilaiceshide.sserver.benchmark.ServerProperty {
 
   val handler = new io.undertow.server.HttpHandler() {
     override def handleRequest(exchange: HttpServerExchange) {
@@ -13,7 +13,7 @@ object UndertowHttpServer extends App {
 
   val server = io.undertow.Undertow
     .builder()
-    .addHttpListener(8080, "0.0.0.0")
+    .addHttpListener(port, interface)
     .setHandler(handler)
     //all the incoming requests' hashcodos maybe even sometimes.
     //for more inforamtion, see 'org.xnio.nio.QueuedNioTcpServer.handleReady()'

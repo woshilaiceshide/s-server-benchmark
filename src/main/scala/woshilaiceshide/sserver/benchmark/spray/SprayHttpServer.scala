@@ -26,7 +26,10 @@ class Handler extends Actor with ActorLogging {
 
 }
 
-object SprayHttpServer extends App {
+/**
+ * spray is dead. akka-http is rising!
+ */
+object SprayHttpServer extends App with woshilaiceshide.sserver.benchmark.ServerProperty {
 
   import com.typesafe.config._
   val s = """
@@ -72,6 +75,6 @@ spray.can.server {
 
   val handler = system.actorOf(Props[Handler], name = "handler")
 
-  IO(Http) ! Http.Bind(handler, interface = "localhost", port = 8080)
+  IO(Http) ! Http.Bind(handler, interface = interface, port = port)
 
 }
