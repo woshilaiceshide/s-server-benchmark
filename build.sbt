@@ -79,8 +79,6 @@ libraryDependencies ++= {
   )
 }
 
-libraryDependencies += "commons-cli" % "commons-cli" % "1.3.1"
-
 javaOptions in Universal += "-J-Xmx32m"
 javaOptions in Universal += "-J-Xms32m"
 javaOptions in Universal += "-Dproperty1=value1"
