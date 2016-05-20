@@ -4,7 +4,7 @@ import CliParser._
 
 object ServerProperty {
 
-  val option_s = CliOption("s", true, true, "which server to run? akka? jetty? netty? rapidoid? undertow? sserver?")
+  val option_s = CliOption("s", false, true, "which server to run? akka? jetty? netty? rapidoid? undertow? sserver?")
   val option_i = CliOption("i", false, true, "listen on this interface, default to 0.0.0.0")
   val option_p = CliOption("p", false, true, "listen on this port, default to 8383")
 
