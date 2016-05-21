@@ -17,6 +17,7 @@ object NettyHttpServer extends App with woshilaiceshide.sserver.benchmark.Server
   class HttpHelloWorldServerInitializer extends ChannelInitializer[SocketChannel] {
 
     override def initChannel(ch: SocketChannel) {
+      //ch.config().setAllowHalfClosure(true)
       val p = ch.pipeline();
       p.addLast(new HttpServerCodec());
       p.addLast(new HttpHelloWorldServerHandler());
