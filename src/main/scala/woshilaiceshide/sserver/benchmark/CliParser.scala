@@ -38,8 +38,8 @@ object CliParser {
 
   }
 
-  private val P1 = """\-([a-zA-Z0-9\.]+)""".r
-  private val P2 = """\-([a-zA-Z0-9\.]+)=([a-zA-Z0-9\.]*)""".r
+  private val P1 = """\-([a-zA-Z0-9\.\-_]+)""".r
+  private val P2 = """\-([a-zA-Z0-9\.\-_]+)=([a-zA-Z0-9\.\-_]*)""".r
 
   abstract class CliParseException(info: String) extends Exception(info)
   final case class BadFormatParseException(info: String) extends CliParseException(info)
